@@ -21,16 +21,16 @@
           <img :src="image"> <!--v-bind: is the longhand and : IS SHORTHAND-->
         </div>
         <div class="product-info">
-          <h1>{{ product }}</h1>
-          <p v-if="inventory > 10">In Stock</p>
-          <p v-else-if="inventory <= 10 && inventory > 0">Almost sold out</p>
+          <h1>{{ title }}</h1>
+          <p v-if="inStock">In Stock</p>
+        
           <p v-else>Out of Stock</p>
           <ul>
             <li v-for="detail in details">{{detail}}</li>
           </ul>
-          <div v-for="variant in variants" :key="variant.id" @mouseover="updateImage(variant.image)"
+          <div v-for="variant, index in variants" :key="variant.id" @mouseover="updateVariant(index)"
             class="color-circle" :style="{ backgroundColor: variant.color }">
-            {{variant.color}}
+            
           </div>
           <!-- ":key" is the short hand for v-bind:key  and the :style short hand for v-bind style and then accesses the css property "backgroundColor"  but you have to use camel casing because it is in js or u can use 'background-color' with single quotes-->
 
