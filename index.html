@@ -15,43 +15,18 @@
     <div class="nav-bar"></div>
     <div class="cart">Cart({{ cart }})</div>
 
-    <div class="product-display">
-      <div class="product-container">
-        <div class="product-image">
-          <img :src="image"> <!--v-bind: is the longhand and : IS SHORTHAND-->
-        </div>
-        <div class="product-info">
-          <h1>{{ title }}</h1>
-          <p v-if="inStock">In Stock</p>
-        
-          <p v-else>Out of Stock</p>
-          <ul>
-            <li v-for="detail in details">{{detail}}</li>
-          </ul>
-          <div v-for="variant, index in variants" :key="variant.id" @mouseover="updateVariant(index)"
-            class="color-circle" :style="{ backgroundColor: variant.color }">
-            
-          </div>
-          <!-- ":key" is the short hand for v-bind:key  and the :style short hand for v-bind style and then accesses the css property "backgroundColor"  but you have to use camel casing because it is in js or u can use 'background-color' with single quotes-->
-
-
-          <!--the condition !instock checks if instock is false and then applies the disabled-->
-          <button class="button" :class="{ disabledButton: !inStock }" :disabled="!inStock" @click="addToCart">
-            Add to Cart
-          </button>
-          <!-- "v-on:click" has shorthand it is "@click"-->
-
-        </div>
-
-      </div>
-
-    </div>
+<product-display :premium="premium"></product-display>
+<product-display></product-display>
+<product-display></product-display>
 
   </div>
 
 
   <!-- Import App -->
   <script src="./main.js"></script>
+
+    <!-- Import component -->
+    <script src="./components/ProductDisplay.js"></script>
   <!-- Mount App -->
   <script>
     const mountedApp = app.mount('#app')
